@@ -67,6 +67,24 @@ public class Main {
         return tempArray;
     }
 
+    public static int[] delete(int[] array, int index) throws Exception {
+        if (index < 0 || index > array.length - 1) {
+            throw new Exception("Выход за границы массивы");
+        }
+
+        int[] tempArray = new int[array.length - 1];
+
+        for (int i = 0; i < index; i++) {
+            tempArray[i] = array[i];
+        }
+
+        for (int i = index + 1; i < array.length; i++) {
+            tempArray[i - 1] = array[i];
+        }
+
+        return tempArray;
+    }
+
 
     public static void main(String[] args) throws Exception {
         Random random = new Random();
@@ -85,6 +103,7 @@ public class Main {
             System.out.println("4. Заполнить массив случайными значениями");
             System.out.println("5. Добавить элемент в конец массива");
             System.out.println("6. Добавить элемент в указанный индекс");
+            System.out.println("7. Удалить элемент по указанному индексу");
             System.out.println("0. Выход");
 
             System.out.print("Введите номер пункта меню: ");
@@ -138,12 +157,20 @@ public class Main {
                 }
                 break;
 
-                case 0:{
+                case 7: {
+                    System.out.print("Введите индекс элемента массива: ");
+                    int index = input.nextInt();
+
+                    array = delete(array, index);
+                }
+                break;
+
+                case 0: {
                     isRun = false;
                 }
                 break;
 
-                default:{
+                default: {
                     System.out.println("Ошибка. Такой команды не существует");
                 }
                 break;
